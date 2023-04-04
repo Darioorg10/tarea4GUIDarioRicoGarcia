@@ -4,6 +4,8 @@
  */
 package ejercicio;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Darío
@@ -75,6 +77,12 @@ public class Calculadora extends javax.swing.JFrame {
                 new Calculadora().setVisible(true);
             }
         });
+        
+        // Cre
+        JFrame ventanaPrincipal = new JFrame("Calculadora");
+        ventanaPrincipal.setSize(800, 600);
+        ventanaPrincipal.setLocationRelativeTo(null);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
