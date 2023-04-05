@@ -15,10 +15,33 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
     /**
      * Creates new form Calculadora
      */
+    
+     // CREAMOS LAS VARIABLES NECESARIAS
+    
+    // Creamos la variable para el primer operando
+    private double operando;
+
+    // Creamos la variable para el segundo operando
+    private double segundoOperando;
+
+    // Creamos una variable para saber si una operación se ha pulsado y que sea un boolean
+    private boolean operacion = false;
+
+    // Creamos una variable de reusltado
+    private double resultado;
+
+    // Creamos una variable para saber que se ha pulsado el botón de suma, resta, multiplicación y división
+    private boolean suma = false;
+    private boolean resta = false;
+    private boolean multiplicacion = false;
+    private boolean division = false;
+    
     public CalculadoraCompleta() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        setTitle("Calculadora");
+        pantalla.setText(" ");
         System.out.println("""
                                          --------------------------------------------------------------------------
                                          Bienvenido a tu calculadora, aquí tienes algunas consideraciones a tener 
@@ -190,6 +213,7 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
         });
 
         botonLimpiar.setBackground(new java.awt.Color(255, 153, 51));
+        botonLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botonLimpiar.setForeground(new java.awt.Color(0, 0, 0));
         botonLimpiar.setText("C");
         botonLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -205,35 +229,36 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
             .addGroup(ventanaPrincipalLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                            .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                            .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                        .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonResta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonSuma, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                        .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonSuma, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonResta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ventanaPrincipalLayout.createSequentialGroup()
                         .addComponent(botonMultiplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -248,28 +273,28 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
                 .addComponent(panelBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonSuma, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boton5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonResta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonSuma, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton9, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton8, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonResta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonMultiplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -299,48 +324,20 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
     private void botonSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonSumaActionPerformed
-
-    // Creamos la variable para el primer operando
-    double operando;
-
-    // Creamos la variable para el segundo operando
-    double segundoOperando;
-
-    // Creamos una variable para saber si un botón se ha pulsado y que sea un boolean
-    boolean pulsado;
-
-    // Creamos una variable para saber si una operación se ha pulsado y que sea un boolean
-    boolean operacion = false;
-
-    // Creamos una variable de reusltado
-    double resultado;
-
-    // Creamos una variable para saber que se ha pulsado el botón de suma, resta, multiplicación y división
-    boolean suma = false;
-    boolean resta = false;
-    boolean multiplicacion = false;
-    boolean division = false;
-
+  
     private void boton0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton0MouseClicked
         // TODO add your handling code here:
-        pulsado = true;
         if (operacion == true) {
             segundoOperando = 0;
         } else {
             operando = 0;
         }
-        pantalla.setText("0");
+        pantalla.setText(pantalla.getText()+"0");
     }//GEN-LAST:event_boton0MouseClicked
 
     private void boton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton1MouseClicked
         // TODO add your handling code here:                                
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 1;
-        } else {
-            operando = 1;
-        }
-        pantalla.setText("1");
+        pantalla.setText(pantalla.getText() + "1");
     }//GEN-LAST:event_boton1MouseClicked
 
 
@@ -348,99 +345,53 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
         // TODO add your handling code here:
         operacion = true;
         suma = true;
-
+        operando = Double.parseDouble(pantalla.getText());
+        pantalla.setText("");        
     }//GEN-LAST:event_botonSumaMouseClicked
 
     private void boton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton2MouseClicked
-        // TODO add your handling code here:
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 2;
-        } else {
-            operando = 2;
-        }
-        pantalla.setText("2");
+        // TODO add your handling code here:     
+        pantalla.setText(pantalla.getText() + "2");
     }//GEN-LAST:event_boton2MouseClicked
 
     private void boton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MouseClicked
         // TODO add your handling code here:
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 3;
-        } else {
-            operando = 3;
-        }
-        pantalla.setText("3");
+        pantalla.setText(pantalla.getText() +"3");
     }//GEN-LAST:event_boton3MouseClicked
 
     private void boton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton4MouseClicked
         // TODO add your handling code here:
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 4;
-        } else {
-            operando = 4;
-        }
-        pantalla.setText("4");
+        pantalla.setText(pantalla.getText() +"4");
     }//GEN-LAST:event_boton4MouseClicked
 
     private void boton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton5MouseClicked
         // TODO add your handling code here:
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 5;
-        } else {
-            operando = 5;
-        }
-        pantalla.setText("5");
+        pantalla.setText(pantalla.getText() +"5");
     }//GEN-LAST:event_boton5MouseClicked
 
     private void boton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton6MouseClicked
         // TODO add your handling code here:
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 6;
-        } else {
-            operando = 6;
-        }
-        pantalla.setText("6");
+        pantalla.setText(pantalla.getText() +"6");
     }//GEN-LAST:event_boton6MouseClicked
 
     private void boton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton7MouseClicked
         // TODO add your handling code here:
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 7;
-        } else {
-            operando = 7;
-        }
-        pantalla.setText("7");
+        pantalla.setText(pantalla.getText() +"7");
     }//GEN-LAST:event_boton7MouseClicked
 
     private void boton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton8MouseClicked
         // TODO add your handling code here:        
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 8;
-        } else {
-            operando = 8;
-        }
-        pantalla.setText("8");
+        pantalla.setText(pantalla.getText() +"8");
     }//GEN-LAST:event_boton8MouseClicked
 
     private void boton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton9MouseClicked
         // TODO add your handling code here:
-        pulsado = true;
-        if (operacion == true) {
-            segundoOperando = 9;
-        } else {
-            operando = 9;
-        }
-        pantalla.setText("9");
+        pantalla.setText(pantalla.getText() +"9");
     }//GEN-LAST:event_boton9MouseClicked
 
     private void botonIgualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIgualMouseClicked
         // TODO add your handling code here:
+        segundoOperando = Double.parseDouble(pantalla.getText());
         if (suma == true) {
             resultado = operando + segundoOperando;
             pantalla.setText(String.valueOf(resultado));
@@ -454,8 +405,6 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
             resultado = operando / segundoOperando;
             pantalla.setText(String.valueOf(resultado));
         }
-
-
     }//GEN-LAST:event_botonIgualMouseClicked
 
     private void botonLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLimpiarMouseClicked
@@ -469,7 +418,7 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
         segundoOperando = 0;
         resultado = 0;
 
-        pantalla.setText("0");
+        pantalla.setText("");
 
     }//GEN-LAST:event_botonLimpiarMouseClicked
 
@@ -477,21 +426,24 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
         // TODO add your handling code here:
         operacion = true;
         resta = true;
-        pantalla.setText("-");
+        operando = Double.parseDouble(pantalla.getText());
+        pantalla.setText("");  
     }//GEN-LAST:event_botonRestaMouseClicked
 
     private void botonMultiplicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMultiplicacionMouseClicked
         // TODO add your handling code here:
         operacion = true;
         multiplicacion = true;
-        pantalla.setText("*");
+        operando = Double.parseDouble(pantalla.getText());
+        pantalla.setText("");     
     }//GEN-LAST:event_botonMultiplicacionMouseClicked
 
     private void botonDivisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDivisionMouseClicked
         // TODO add your handling code here:
         operacion = true;
         division = true;
-        pantalla.setText("/");
+        operando = Double.parseDouble(pantalla.getText());
+        pantalla.setText("");  
     }//GEN-LAST:event_botonDivisionMouseClicked
 
     /**
