@@ -17,7 +17,7 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
      */
     public CalculadoraCompleta() {
         initComponents();
-        setLocationRelativeTo(null);       
+        setLocationRelativeTo(null);
         setResizable(false);
         System.out.println("""
                                          --------------------------------------------------------------------------
@@ -162,10 +162,25 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
         });
 
         botonResta.setText("-");
+        botonResta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRestaMouseClicked(evt);
+            }
+        });
 
         botonMultiplicacion.setText("*");
+        botonMultiplicacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonMultiplicacionMouseClicked(evt);
+            }
+        });
 
         botonDivision.setText("/");
+        botonDivision.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonDivisionMouseClicked(evt);
+            }
+        });
 
         botonIgual.setText("=");
         botonIgual.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -300,8 +315,11 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
     // Creamos una variable de reusltado
     double resultado;
 
-    // Creamos una variable para saber que se ha pulsado el botón de suma
+    // Creamos una variable para saber que se ha pulsado el botón de suma, resta, multiplicación y división
     boolean suma = false;
+    boolean resta = false;
+    boolean multiplicacion = false;
+    boolean division = false;
 
     private void boton0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton0MouseClicked
         // TODO add your handling code here:
@@ -329,7 +347,7 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
     private void botonSumaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSumaMouseClicked
         // TODO add your handling code here:
         operacion = true;
-        suma = true;     
+        suma = true;
 
     }//GEN-LAST:event_botonSumaMouseClicked
 
@@ -426,22 +444,55 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
         if (suma == true) {
             resultado = operando + segundoOperando;
             pantalla.setText(String.valueOf(resultado));
-        } else {
-            JOptionPane.showMessageDialog(null, "Todavía no has seleccionado dos operandos y su operación");
+        } else if (resta == true) {
+            resultado = operando - segundoOperando;
+            pantalla.setText(String.valueOf(resultado));
+        } else if (multiplicacion == true) {
+            resultado = operando * segundoOperando;
+            pantalla.setText(String.valueOf(resultado));
+        } else if(division == true){
+            resultado = operando / segundoOperando;
+            pantalla.setText(String.valueOf(resultado));
         }
+
+
     }//GEN-LAST:event_botonIgualMouseClicked
 
     private void botonLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLimpiarMouseClicked
         // TODO add your handling code here:
         operacion = false;
         suma = false;
+        resta = false;
+        multiplicacion = false;
+        division = false;
         operando = 0;
         segundoOperando = 0;
         resultado = 0;
-        
+
         pantalla.setText("0");
-        
+
     }//GEN-LAST:event_botonLimpiarMouseClicked
+
+    private void botonRestaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRestaMouseClicked
+        // TODO add your handling code here:
+        operacion = true;
+        resta = true;
+        pantalla.setText("-");
+    }//GEN-LAST:event_botonRestaMouseClicked
+
+    private void botonMultiplicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMultiplicacionMouseClicked
+        // TODO add your handling code here:
+        operacion = true;
+        multiplicacion = true;
+        pantalla.setText("*");
+    }//GEN-LAST:event_botonMultiplicacionMouseClicked
+
+    private void botonDivisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDivisionMouseClicked
+        // TODO add your handling code here:
+        operacion = true;
+        division = true;
+        pantalla.setText("/");
+    }//GEN-LAST:event_botonDivisionMouseClicked
 
     /**
      * @param args the command line arguments

@@ -253,16 +253,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="-"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonRestaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonMultiplicacion">
           <Properties>
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonMultiplicacionMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonDivision">
           <Properties>
             <Property name="text" type="java.lang.String" value="/"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonDivisionMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonIgual">
           <Properties>
