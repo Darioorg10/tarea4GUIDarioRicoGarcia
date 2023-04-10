@@ -327,7 +327,7 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
   
     private void boton0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton0MouseClicked
         // TODO add your handling code here:
-        if (operacion == true) {
+        if (operacion) {
             segundoOperando = 0;
         } else {
             operando = 0;
@@ -392,16 +392,16 @@ public class CalculadoraCompleta extends javax.swing.JFrame {
     private void botonIgualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIgualMouseClicked
         // TODO add your handling code here:
         segundoOperando = Double.parseDouble(pantalla.getText());
-        if (suma == true) {
+        if (suma) {
             resultado = operando + segundoOperando;
             pantalla.setText(String.valueOf(resultado));
-        } else if (resta == true) {
+        } else if (resta) {
             resultado = operando - segundoOperando;
             pantalla.setText(String.valueOf(resultado));
-        } else if (multiplicacion == true) {
+        } else if (multiplicacion) {
             resultado = operando * segundoOperando;
             pantalla.setText(String.valueOf(resultado));
-        } else if(division == true){
+        } else if(division){
             resultado = operando / segundoOperando;
             pantalla.setText(String.valueOf(resultado));
         }
